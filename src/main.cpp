@@ -7,7 +7,7 @@
 
 struct APPLICATION {
   char* name = "MycoBot";
-}
+};
 
 const char* wifiSSID = "SECRET_SSID";
 const char* wifiPassword = "SECRET_PASSWORD";
