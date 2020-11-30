@@ -5,9 +5,7 @@
 #include <WiFiUdp.h>
 #include <WiFiClientSecure.h>
 
-struct APPLICATION {
-  char* name = "MycoBot";
-};
+const char* APPLICATION = "MycoBot";
 
 const char* wifiSSID = "SECRET_SSID";
 const char* wifiPassword = "SECRET_PASSWORD";
@@ -51,7 +49,7 @@ void loop() {
           httpConnect(httpClient);
           htmlHead(httpClient);
           htmlBody(httpClient, "I'm too weak to put anything good.");
-          htmlBody(httpClient, APPLICATION.name);
+          htmlBody(httpClient, APPLICATION);
           htmlTail(httpClient);
           digitalWrite(LED_BUILTIN, LOW);
           break;
