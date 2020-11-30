@@ -5,6 +5,8 @@
 /extras/fuzzing/*_fuzzer.options
 
 # IDE
+.pio
+.vscode
 /.idea
 /sketch
 /preproc
