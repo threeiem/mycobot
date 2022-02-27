@@ -6,7 +6,7 @@
 
 struct APPLICATION {
   char* name = "MycoBot";
-}
+};
 
 const char* wifiSSID = "SECRET_SSID";
 const char* wifiPassword = "SECRET_PASSWORD";
@@ -49,8 +49,8 @@ void loop() {
           delay(100); 
           httpConnect(httpClient);
           htmlHead(httpClient);
-          htmlBody(httpClient, "I'm too weak to put anything good.");
-          htmlBody(httpClient, APPLICATION.name);
+          htmlBody(httpClient, "I'm too weak to put anything good. MycoBot dominates me.");
+          htmlBody(httpClient, "Dood.");
           htmlTail(httpClient);
           digitalWrite(LED_BUILTIN, LOW);
           break;
@@ -91,7 +91,7 @@ void htmlHead(WiFiClient c) {
   c.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
   c.println("<link rel='icon' href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAS0lEQVR42s2SMQ4AIAjE+P+ncSYdasgNXMJgcyIIlVKPIKdvioAXyWBeJmVpqRZKWtj9QWAKZyWll50b8IcL9JUeQF50n28ckyb0ADG8RLwp05YBAAAAAElFTkSuQmCC' type='image/x-png' />");
   c.println("</head><body>");
-  c.println("<h1>MycoBot/h1>");
+  c.println("<h1>MycoBot</h1>");
 }
 
 void htmlTail(WiFiClient c) {
