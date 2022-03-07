@@ -1,6 +1,8 @@
 #ifndef RELAY_H
 #define RELAY_H
 
+#include <Arduino.h>
+
 class Relay {
   private:
     int GPIO;
@@ -9,9 +11,11 @@ class Relay {
     bool TriggerLow;
 
   public:
+    Relay(int gpio);
     Relay(int gpio, bool enable, bool trigger_low);
     int GetGPIO();
     int GetStatus();
+    bool GetTriggerLow();
     void SetGPIO(int gpio);
     void SetStatus();
     void Switch();
