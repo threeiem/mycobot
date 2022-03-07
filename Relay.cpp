@@ -1,10 +1,54 @@
 #include "Relay.h"
 
-Relay::Relay(int gpio, bool enable = "false", bool trigger_low = "false"){
-  
+// Get/Set
+//------------------------------------------------------------------------------
+// GPIO
+int Relay::GetGPIO(){
+  return this->GPIO;
+}
+
+// Status
+int Relay::GetStatus(){
+  int pin = this->GPIO;
+  return digitalRead(pin); 
+}
+
+bool Relay::GetTriggerLow(){
+  return this->TriggerLow;
+}
+
+void Relay::SetGPIO(int gpio){
+  this->GPIO = gpio;
+  pinMode(this->GPIO, OUTPUT);
+}
+
+void Relay::SetStatus(){
+  this->Status = Relay::GetGPIO();
+}
+
+// Methods
+//------------------------------------------------------------------------------
+void Relay::Switch(){
+  int pin = this->GetGPIO();
+  if (this->GetStatus() == 0) {
+    digitalWrite(pin, HIGH);
+  } else {
+    digitalWrite(pin, LOW);
+  }
+  this->SetStatus();
+}
+
+// Constructor
+//------------------------------------------------------------------------------
+Relay::Relay(int gpio){
   this->SetGPIO(gpio);
-  this->SetTriggerLow(trigger_low);
-  this->setStatus();
+  digitalWrite(gpio, LOW);
+  
+}
+
+Relay::Relay(int gpio, bool enable = "false", bool trigger_low = "false"){
+
+  this->SetGPIO(gpio);
 
   if (enable == true){
     if (trigger_low == true) {
@@ -18,47 +62,7 @@ Relay::Relay(int gpio, bool enable = "false", bool trigger_low = "false"){
     } else {
       digitalWrite(gpio, LOW);
     }
-  }  
-}
-
-//------------------------------------------------------------------------------
-// Get
-//------------------------------------------------------------------------------
-
-// GPIO
-int Relay::GetGPIO(){
-  return this->GPIO;
-}
-
-// Status
-int Relay::GetStatus(){
-  return digitalRead(this->GPIO); 
-}
-
-bool Relay::GetTriggerLow(){
-
-}
-
-//------------------------------------------------------------------------------
-// Set
-//------------------------------------------------------------------------------
-void Relay::SetGPIO(int gpio){
-  this->GPIO = gpio;
-  pinMode(this->GPIO, OUTPUT);
-}
-
-void Relay::SetStatus(){
-  this->Status = Relay::GetGPIO();
-}
-
-//------------------------------------------------------------------------------
-// Methods
-//------------------------------------------------------------------------------
-Switch(){
-  if (this->GetStatus() == 0) {
-    digitalWrite(this->GPIO, HIGH);
-  } else {
-    digitalWrite(this->GPIO, LOW);
   }
+
   this->SetStatus();
 }
