@@ -1,5 +1,5 @@
-#ifndef EARTHSYSTEMS_H_H
-#define EARTHSYSTEMS_H_H
+#ifndef EARTHSYSTEMS_HPP
+#define EARTHSYSTEMS_HPP
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 #include <string.h>
@@ -9,24 +9,25 @@
 #include <Adafruit_BME280.h>
 
 /*
-EarthSystems - BME280 Object (temperature, humidity, pressure)
+EarthSystems - BME280 Object (temperature, humidity, pressure and "altitude")
  */
-class EarthSystems {
+class EarthSystem {
   private:
     Adafruit_BME280 Station;
     float Temperature;
-    float Humidity;
-    float Pressure;
-    float Altitude;
-    String Status;
     String Summary;
-    bool Enabled;
 
   public:
-    EarthSystems();
-    String GetStatus();
+    EarthSystem();
+    Adafruit_Sensor *StationTemperatureSensor;
+    Adafruit_Sensor *StationPressureSensor;
+    Adafruit_Sensor *StationHumiditySensor;
+
+    bool init();
     String GetSummary();
     float GetTemperature();
+    float GetTemperatureCelsius();
+    float GetTemperatureFahrenheit();
     float GetHumidity();
     float GetPressure();
     float GetAltitude();

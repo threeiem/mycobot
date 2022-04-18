@@ -1,5 +1,5 @@
-#ifndef RELAY_H
-#define RELAY_H
+#ifndef RELAY_HPP
+#define RELAY_HPP
 
 #include <Arduino.h>
 
